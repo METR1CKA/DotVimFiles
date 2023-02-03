@@ -54,5 +54,26 @@ return require('packer').startup(function(use)
   --Languages
   use 'jose-elias-alvarez/typescript.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
+  use 'nvim-treesitter/nvim-treesitter'
+
+  --Templates
+  use 'windwp/nvim-ts-autotag'
+  use 'p00f/nvim-ts-rainbow'
+  use 'axelvc/template-string.nvim'
+  use 'j-hui/fidget.nvim'
+  use 'folke/todo-comments.nvim'
+  use({
+    "folke/noice.nvim",
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+  })
+  use 'numToStr/Comment.nvim'
+  use 'AndrewRadev/sideways.vim'
+  use({
+    'akinsho/toggleterm.nvim',
+    tag = '*',
+  })
 
 end)

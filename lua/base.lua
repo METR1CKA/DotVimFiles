@@ -1,7 +1,7 @@
 local opt = vim.opt
 
 opt.number = true
--- opt.relativenumber = true
+--opt.relativenumber = true
 
 vim.scriptencoding = 'utf-8'
 opt.encoding = 'utf-8'
@@ -35,12 +35,15 @@ opt.cursorline = true
 opt.termguicolors = true
 
 vim.api.nvim_create_autocmd('TextYankPost', {
-
   callback = function()
     vim.highlight.on_yank({
       higroup = 'IncSearch',
       timeout = 300
     })
   end
-
 })
+
+
+opt.updatetime = 300
+opt.timeoutlen = 500
+

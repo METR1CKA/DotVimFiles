@@ -1,4 +1,3 @@
--- Set up nvim-cmp.
 local cmp = require 'cmp'
 local luasnip = require('luasnip')
 local lspkind = require 'lspkind'
@@ -6,34 +5,32 @@ local lspkind = require 'lspkind'
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-c>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<C-d>'] = cmp.mapping(function(fallback)
+    ['<c-d>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)
       else
         fallback()
       end
     end, { "i", "s" }),
-    ['<C-b>'] = cmp.mapping(function(fallback)
+    ['<c-b>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
       end
-    end, { "i", "s" }),
+    end, { "i", "s" })
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp',
       entry_filter = function(entry)
-
         return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
-
       end
     },
     { name = 'luasnip' }, -- For luasnip users.
@@ -50,7 +47,7 @@ cmp.setup({
           return vim_item
         end
       end
-      return lspkind.cmp_format({ with_text = false })(entry, vim_item)
+      return lspkind.cmp_format({ with_text = true })(entry, vim_item)
     end
   }
 })
@@ -83,3 +80,4 @@ vim.cmd([[
 set completeopt=menuone,noinsert,noselect
 highlight! default link CmpItemKind CmpItemMenuDefault
 ]])
+
